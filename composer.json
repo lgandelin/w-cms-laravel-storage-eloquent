@@ -1,0 +1,20 @@
+{
+    "name": "webaccess/w-cms-laravel-storage-eloquent",
+    "type": "library",
+    "description": "W CMS - Eloquent storage for Laravel package",
+    "authors": [
+        {
+            "name": "Louis Gandelin",
+            "email": "lgandelin@web-access.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-0": {
+            "Webaccess\\WCMSLaravelStorageEloquent\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
