@@ -81,6 +81,9 @@ class EloquentBlockRepository implements BlockRepositoryInterface
 
         $blockModel->save();
 
+        Context::get('block_' . $blockModel->type)->saveBlock($block, $blockModel);
+        $blockModel->save();
+
         return $blockModel->id;
     }
 
