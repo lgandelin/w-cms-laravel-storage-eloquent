@@ -32,6 +32,9 @@ class WCMSLaravelStorageEloquentServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../../database/' => base_path('/database')
+        ], 'database');
     }
 
     /**
