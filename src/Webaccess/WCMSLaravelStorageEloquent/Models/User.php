@@ -2,9 +2,13 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Models;
 
-class User extends \Eloquent {
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-	protected $table = 'w_cms_users';
-	protected $fillable = array('login', 'password', 'last_name', 'first_name', 'email');
+class User extends \Eloquent implements AuthenticatableContract {
 
+    use Authenticatable;
+
+    protected $table = 'w_cms_users';
+    protected $fillable = array('login', 'password', 'last_name', 'first_name', 'email');
 }
