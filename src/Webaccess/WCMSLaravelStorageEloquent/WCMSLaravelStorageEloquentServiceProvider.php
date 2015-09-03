@@ -21,6 +21,7 @@ use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentMediaRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentMenuItemRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentMenuRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentPageRepository;
+use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentThemeRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentUserRepository;
 
 class WCMSLaravelStorageEloquentServiceProvider extends ServiceProvider {
@@ -64,5 +65,6 @@ class WCMSLaravelStorageEloquentServiceProvider extends ServiceProvider {
         Context::add('user', new EloquentUserRepository());
         Context::add('article_category', new EloquentArticleCategoryRepository());
         Context::add('block_type', new EloquentBlockTypeRepository());
+        Context::add('theme', new EloquentThemeRepository());
     }
 } 
