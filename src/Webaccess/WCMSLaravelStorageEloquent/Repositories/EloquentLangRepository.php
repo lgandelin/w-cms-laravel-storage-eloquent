@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\Lang;
-use CMS\Repositories\LangRepositoryInterface;
+use Webaccess\WCMSCore\Entities\Lang;
+use Webaccess\WCMSCore\Repositories\LangRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Lang as LangModel;
 
 class EloquentLangRepository implements LangRepositoryInterface

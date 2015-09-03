@@ -2,9 +2,9 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\Page;
-use CMS\Repositories\PageRepositoryInterface;
-use CMS\Structures\PageStructure;
+use Webaccess\WCMSCore\Entities\Page;
+use Webaccess\WCMSCore\Repositories\PageRepositoryInterface;
+use Webaccess\WCMSCore\Structures\PageStructure;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Page as PageModel;
 
 class EloquentPageRepository implements PageRepositoryInterface {

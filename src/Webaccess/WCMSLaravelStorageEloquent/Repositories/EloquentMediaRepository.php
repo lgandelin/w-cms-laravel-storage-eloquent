@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\Media;
-use CMS\Repositories\MediaRepositoryInterface;
+use Webaccess\WCMSCore\Entities\Media;
+use Webaccess\WCMSCore\Repositories\MediaRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Media as MediaModel;
 
 class EloquentMediaRepository implements MediaRepositoryInterface

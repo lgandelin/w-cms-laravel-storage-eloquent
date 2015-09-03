@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\Article;
-use CMS\Repositories\ArticleRepositoryInterface;
+use Webaccess\WCMSCore\Entities\Article;
+use Webaccess\WCMSCore\Repositories\ArticleRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Article as ArticleModel;
 
 class EloquentArticleRepository implements ArticleRepositoryInterface

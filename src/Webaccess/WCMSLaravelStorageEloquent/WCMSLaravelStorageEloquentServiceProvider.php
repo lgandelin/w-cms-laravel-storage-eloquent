@@ -2,7 +2,7 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent;
 
-use CMS\Context;
+use Webaccess\WCMSCore\Context;
 use Illuminate\Support\ServiceProvider;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockArticleListRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockArticleRepository;

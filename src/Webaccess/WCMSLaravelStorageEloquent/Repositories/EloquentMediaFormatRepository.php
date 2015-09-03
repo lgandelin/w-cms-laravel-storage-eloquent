@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\MediaFormat;
-use CMS\Repositories\MediaFormatRepositoryInterface;
+use Webaccess\WCMSCore\Entities\MediaFormat;
+use Webaccess\WCMSCore\Repositories\MediaFormatRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\MediaFormat as MediaFormatModel;
 
 class EloquentMediaFormatRepository implements MediaFormatRepositoryInterface
