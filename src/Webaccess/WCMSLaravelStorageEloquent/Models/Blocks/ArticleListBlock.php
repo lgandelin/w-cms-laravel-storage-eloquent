@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Models\Blocks;
 
-use CMS\Entities\Block;
-use CMS\Entities\Blocks\ArticleListBlock as ArticleListBlockEntity;
+use Webaccess\WCMSCore\Entities\Block;
+use Webaccess\WCMSCore\Entities\Blocks\ArticleListBlock as ArticleListBlockEntity;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Block as BlockModel;
 
 class ArticleListBlock extends \Eloquent

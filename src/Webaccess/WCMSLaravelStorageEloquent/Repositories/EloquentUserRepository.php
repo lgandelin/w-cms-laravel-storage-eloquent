@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\User;
-use CMS\Repositories\UserRepositoryInterface;
+use Webaccess\WCMSCore\Entities\User;
+use Webaccess\WCMSCore\Repositories\UserRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\User as UserModel;
 
 class EloquentUserRepository implements UserRepositoryInterface

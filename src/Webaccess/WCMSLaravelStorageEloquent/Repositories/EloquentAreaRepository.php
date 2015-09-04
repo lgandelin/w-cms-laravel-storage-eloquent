@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\Area;
-use CMS\Repositories\AreaRepositoryInterface;
+use Webaccess\WCMSCore\Entities\Area;
+use Webaccess\WCMSCore\Repositories\AreaRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Area as AreaModel;
 
 class EloquentAreaRepository implements AreaRepositoryInterface {

@@ -193,6 +193,13 @@ class CreateWCMSTables extends Migration {
             $table->integer('order')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('w_cms_themes', function($table) {
+            $table->increments('id');
+            $table->string('identifier')->nullable();
+            $table->boolean('is_selected')->nullable();
+            $table->timestamps();
+        });
 	}
 
 	public function down()

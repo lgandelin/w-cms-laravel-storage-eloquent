@@ -2,7 +2,7 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\BlockType;
+use Webaccess\WCMSCore\Entities\BlockType;
 use Webaccess\WCMSLaravelStorageEloquent\Models\BlockType as BlockTypeModel;
 
 class EloquentBlockTypeRepository

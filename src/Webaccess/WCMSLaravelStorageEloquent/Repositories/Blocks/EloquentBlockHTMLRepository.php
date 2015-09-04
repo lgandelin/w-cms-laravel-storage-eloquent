@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks;
 
-use CMS\Entities\Block;
-use CMS\Entities\Blocks\HTMLBlock as HTMLBlockEntity;
+use Webaccess\WCMSCore\Entities\Block;
+use Webaccess\WCMSCore\Entities\Blocks\HTMLBlock as HTMLBlockEntity;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Block as BlockModel;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Blocks\HTMLBlock;
 

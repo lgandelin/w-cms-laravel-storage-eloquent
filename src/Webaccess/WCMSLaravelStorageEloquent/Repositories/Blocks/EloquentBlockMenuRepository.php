@@ -2,8 +2,8 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks;
 
-use CMS\Entities\Block;
-use CMS\Entities\Blocks\MenuBlock as MenuBlockEntity;
+use Webaccess\WCMSCore\Entities\Block;
+use Webaccess\WCMSCore\Entities\Blocks\MenuBlock as MenuBlockEntity;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Block as BlockModel;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Blocks\MenuBlock;
 

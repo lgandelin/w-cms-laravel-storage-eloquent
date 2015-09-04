@@ -2,9 +2,9 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use CMS\Entities\MenuItem;
-use CMS\Repositories\MenuItemRepositoryInterface;
-use CMS\Structures\MenuItemStructure;
+use Webaccess\WCMSCore\Entities\MenuItem;
+use Webaccess\WCMSCore\Repositories\MenuItemRepositoryInterface;
+use Webaccess\WCMSCore\Structures\MenuItemStructure;
 use Webaccess\WCMSLaravelStorageEloquent\Models\MenuItem as MenuItemModel;
 
 class EloquentMenuItemRepository implements MenuItemRepositoryInterface
