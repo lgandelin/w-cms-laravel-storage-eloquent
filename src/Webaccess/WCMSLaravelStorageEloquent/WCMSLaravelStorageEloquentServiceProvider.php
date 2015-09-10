@@ -4,12 +4,6 @@ namespace Webaccess\WCMSLaravelStorageEloquent;
 
 use Webaccess\WCMSCore\Context;
 use Illuminate\Support\ServiceProvider;
-use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockArticleListRepository;
-use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockArticleRepository;
-use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockHTMLRepository;
-use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockMediaRepository;
-use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockMenuRepository;
-use Webaccess\WCMSLaravelStorageEloquent\Repositories\Blocks\EloquentBlockViewRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentAreaRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentArticleCategoryRepository;
 use Webaccess\WCMSLaravelStorageEloquent\Repositories\EloquentArticleRepository;
@@ -45,26 +39,18 @@ class WCMSLaravelStorageEloquentServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        //Init repositories
-        Context::add('block_html', new EloquentBlockHTMLRepository());
-        Context::add('block_menu', new EloquentBlockMenuRepository());
-        Context::add('block_article', new EloquentBlockArticleRepository());
-        Context::add('block_article_list', new EloquentBlockArticleListRepository());
-        Context::add('block_media', new EloquentBlockMediaRepository());
-        Context::add('block_view', new EloquentBlockViewRepository());
-
-        Context::add('page', new EloquentPageRepository());
-        Context::add('area', new EloquentAreaRepository());
-        Context::add('block', new EloquentBlockRepository());
-        Context::add('lang', new EloquentLangRepository());
-        Context::add('menu', new EloquentMenuRepository());
-        Context::add('menu_item', new EloquentMenuItemRepository());
-        Context::add('media', new EloquentMediaRepository());
-        Context::add('media_format', new EloquentMediaFormatRepository());
-        Context::add('article', new EloquentArticleRepository());
-        Context::add('user', new EloquentUserRepository());
-        Context::add('article_category', new EloquentArticleCategoryRepository());
-        Context::add('block_type', new EloquentBlockTypeRepository());
-        Context::add('theme', new EloquentThemeRepository());
+        Context::add('page_repository', new EloquentPageRepository());
+        Context::add('area_repository', new EloquentAreaRepository());
+        Context::add('block_repository', new EloquentBlockRepository());
+        Context::add('lang_repository', new EloquentLangRepository());
+        Context::add('menu_repository', new EloquentMenuRepository());
+        Context::add('menu_item_repository', new EloquentMenuItemRepository());
+        Context::add('media_repository', new EloquentMediaRepository());
+        Context::add('media_format_repository', new EloquentMediaFormatRepository());
+        Context::add('article_repository', new EloquentArticleRepository());
+        Context::add('user_repository', new EloquentUserRepository());
+        Context::add('article_category_repository', new EloquentArticleCategoryRepository());
+        Context::add('block_type_repository', new EloquentBlockTypeRepository());
+        Context::add('theme_repository', new EloquentThemeRepository());
     }
 } 
