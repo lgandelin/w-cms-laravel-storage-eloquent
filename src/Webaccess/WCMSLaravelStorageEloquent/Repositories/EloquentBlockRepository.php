@@ -145,7 +145,9 @@ class EloquentBlockRepository implements BlockRepositoryInterface
             $property = $p->name;
             $setter = 'set' . self::snakeToCamel($property);
             $property = self::camelToSnake($property);
-            $block->$setter($blockModel->blockable->$property);
+            if ($blockModel->blockable) {
+                $block->$setter($blockModel->blockable->$property);
+            }
         }
 
         $block->setID($blockModel->id);
