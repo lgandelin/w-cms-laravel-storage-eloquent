@@ -17,7 +17,8 @@ class EloquentBlockTypeRepository
         $blockTypeModel = new BlockTypeModel();
         $blockTypeModel->code = $blockType->getCode();
         $blockTypeModel->name = $blockType->getName();
-        $blockTypeModel->content_view = $blockType->getContentView();
+        $blockTypeModel->back_controller = $blockType->getBackController();
+        $blockTypeModel->back_view = $blockType->getBackView();
         $blockTypeModel->front_view = $blockType->getFrontView();
         $blockTypeModel->order = $blockType->getOrder();
 
