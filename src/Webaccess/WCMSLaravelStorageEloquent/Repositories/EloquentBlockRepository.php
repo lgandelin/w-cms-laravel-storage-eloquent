@@ -2,7 +2,7 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
-use Webaccess\WCMSCore\Context;
+use ReflectionClass;
 use Webaccess\WCMSCore\Entities\Block;
 use Webaccess\WCMSCore\Repositories\BlockRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Block as BlockModel;
@@ -79,9 +79,7 @@ class EloquentBlockRepository implements BlockRepositoryInterface
         $blockModel->is_master = $block->getIsMaster();
         $blockModel->is_ghost = $block->getIsGhost();
 
-        $blockModel->save();
-
-        Context::get('block_' . $blockModel->type)->saveBlock($block, $blockModel);
+        $this->saveBlockContent($block, $blockModel);
         $blockModel->save();
 
         return $blockModel->id;
@@ -103,7 +101,7 @@ class EloquentBlockRepository implements BlockRepositoryInterface
         $blockModel->is_master = $block->getIsMaster();
         $blockModel->is_ghost = $block->getIsGhost();
 
-        Context::get('block_' . $blockModel->type)->saveBlock($block, $blockModel);
+        $this->saveBlockContent($block, $blockModel);
 
         return $blockModel->save();
     }
@@ -127,7 +125,18 @@ class EloquentBlockRepository implements BlockRepositoryInterface
 
     private static function createBlockFromModel(BlockModel $blockModel)
     {
-        $block = Context::get('block_' . $blockModel->type)->getBlock($blockModel);
+        $blockEntity = 'Webaccess\\WCMSCore\\Entities\\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block';
+        $block = new $blockEntity;
+        $reflexion = new ReflectionClass($blockEntity);
+        $properties = $reflexion->getProperties();
+        foreach ($properties as $i => $p) {
+            $property = $p->name;
+            $setter = 'set' . self::snakeToCamel($property);
+            $property = self::camelToSnake($property);
+            if ($blockModel->blockable) {
+                $block->$setter($blockModel->blockable->$property);
+            }
+        }
 
         $block->setID($blockModel->id);
         $block->setName($blockModel->name);
@@ -145,7 +154,43 @@ class EloquentBlockRepository implements BlockRepositoryInterface
         $block->setIsGhost($blockModel->is_ghost);
 
         return $block;
+    }
 
-        return false;
+    private static function camelToSnake($property)
+    {
+        foreach (str_split($property) as $j => $letter) {
+            if (preg_match('/[A-Z]/', $letter)) {
+                $property = strtolower(substr($property, 0, $j) . '_' . $letter . substr($property, $j + 1));
+                break;
+            }
+        }
+        return $property;
+    }
+
+    private static function snakeToCamel($property)
+    {
+        return ucfirst(str_replace('_', '', $property));
+    }
+
+    /**
+     * @param Block $block
+     * @param $blockModel
+     */
+    private function saveBlockContent(Block $block, $blockModel)
+    {
+        $blockEntity = 'Webaccess\\WCMSLaravelStorageEloquent\\Models\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block';
+        $blockable = ($blockModel->blockable) ? $blockModel->blockable : new $blockEntity;
+
+        $reflexion = new ReflectionClass('Webaccess\\WCMSCore\\Entities\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block');
+        $properties = $reflexion->getProperties();
+        foreach ($properties as $i => $p) {
+            $property = $p->name;
+            $getter = 'get' . self::snakeToCamel($property);
+            $property = self::camelToSnake($property);
+            $blockable->$property = $block->$getter();
+        }
+
+        $blockable->save();
+        $blockable->block()->save($blockModel);
     }
 } 

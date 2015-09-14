@@ -184,11 +184,19 @@ class CreateWCMSTables extends Migration {
             $table->timestamps();
         });
 
+        Schema::create('w_cms_blocks_controller', function($table) {
+            $table->increments('id');
+            $table->string('class_path')->nullable();
+            $table->string('method')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('w_cms_block_types', function($table) {
             $table->increments('id');
             $table->string('code')->nullable();
             $table->string('name')->nullable();
-            $table->string('content_view')->nullable();
+            $table->string('back_controller')->nullable();
+            $table->string('back_view')->nullable();
             $table->string('front_view')->nullable();
             $table->integer('order')->nullable();
             $table->timestamps();
