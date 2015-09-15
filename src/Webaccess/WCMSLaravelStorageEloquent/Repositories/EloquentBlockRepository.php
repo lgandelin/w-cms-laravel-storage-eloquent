@@ -3,6 +3,7 @@
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
 use ReflectionClass;
+use Webaccess\WCMSCore\Context;
 use Webaccess\WCMSCore\Entities\Block;
 use Webaccess\WCMSCore\Repositories\BlockRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\Block as BlockModel;
@@ -125,15 +126,16 @@ class EloquentBlockRepository implements BlockRepositoryInterface
 
     private static function createBlockFromModel(BlockModel $blockModel)
     {
-        $blockEntity = 'Webaccess\\WCMSCore\\Entities\\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block';
-        $block = new $blockEntity;
-        $reflexion = new ReflectionClass($blockEntity);
+        $blockTypeEntity = self::getBlockTypeEntity($blockModel->type);
+        $block = new $blockTypeEntity;
+
+        $reflexion = new ReflectionClass($block);
         $properties = $reflexion->getProperties();
         foreach ($properties as $i => $p) {
             $property = $p->name;
             $setter = 'set' . self::snakeToCamel($property);
             $property = self::camelToSnake($property);
-            if ($blockModel->blockable) {
+            if ($blockModel->blockable && method_exists($block, $setter)) {
                 $block->$setter($blockModel->blockable->$property);
             }
         }
@@ -172,25 +174,32 @@ class EloquentBlockRepository implements BlockRepositoryInterface
         return ucfirst(str_replace('_', '', $property));
     }
 
-    /**
-     * @param Block $block
-     * @param $blockModel
-     */
     private function saveBlockContent(Block $block, $blockModel)
     {
-        $blockEntity = 'Webaccess\\WCMSLaravelStorageEloquent\\Models\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block';
+        $blockEntity = 'Webaccess\\WCMSLaravelStorageEloquent\\Models\\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block';
         $blockable = ($blockModel->blockable) ? $blockModel->blockable : new $blockEntity;
+        $blockTypeEntity = $this->getBlockTypeEntity($block->getType());
 
-        $reflexion = new ReflectionClass('Webaccess\\WCMSCore\\Entities\Blocks\\' . self::snakeToCamel($blockModel->type) . 'Block');
+        $reflexion = new ReflectionClass(new $blockTypeEntity);
         $properties = $reflexion->getProperties();
         foreach ($properties as $i => $p) {
             $property = $p->name;
             $getter = 'get' . self::snakeToCamel($property);
             $property = self::camelToSnake($property);
-            $blockable->$property = $block->$getter();
+
+            if (method_exists($block, $getter)) {
+                $blockable->$property = $block->$getter();
+            }
         }
 
         $blockable->save();
         $blockable->block()->save($blockModel);
+    }
+
+    private static function getBlockTypeEntity($code)
+    {
+        $blockType = Context::get('block_type_repository')->getBlockTypeByCode($code);
+
+        return $blockType->entity;
     }
 } 
