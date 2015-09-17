@@ -197,6 +197,7 @@ class CreateWCMSTables extends Migration {
             $table->string('name')->nullable();
             $table->string('back_controller')->nullable();
             $table->string('back_view')->nullable();
+            $table->string('front_controller')->nullable();
             $table->string('front_view')->nullable();
             $table->integer('order')->nullable();
             $table->timestamps();
