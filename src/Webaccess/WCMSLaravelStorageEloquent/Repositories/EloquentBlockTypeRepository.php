@@ -43,6 +43,13 @@ class EloquentBlockTypeRepository implements BlockTypeRepositoryInterface
         return $blockTypeModel->id;
     }
 
+    public function deleteBlockType($blockTypeID)
+    {
+        $blockTypeModel = BlockTypeModel::find($blockTypeID);
+
+        return $blockTypeModel->delete();
+    }
+
     private static function createBlockTypeFromModel($blockTypeModel)
     {
         $blockType = new BlockType();

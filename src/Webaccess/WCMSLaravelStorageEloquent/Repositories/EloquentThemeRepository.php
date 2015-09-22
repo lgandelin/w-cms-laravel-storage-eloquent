@@ -51,6 +51,13 @@ class EloquentThemeRepository implements ThemeRepositoryInterface
         return $themeModel->save();
     }
 
+    public function deleteTheme($themeID)
+    {
+        $themeModel = ThemeModel::find($themeID);
+
+        return $themeModel->delete();
+    }
+
     private static function createThemeFromModel(ThemeModel $themeModel)
     {
         $theme = new Theme();
