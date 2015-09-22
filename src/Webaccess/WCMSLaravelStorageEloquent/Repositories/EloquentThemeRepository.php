@@ -16,9 +16,9 @@ class EloquentThemeRepository implements ThemeRepositoryInterface
         return false;
     }
 
-    public function findSelectedThemeIdentifier()
+    public function findSelectedTheme()
     {
-        return ThemeModel::where('is_selected', 1)->first()->identifier;
+        return ThemeModel::where('is_selected', 1)->first();
     }
 
     public function findAll()

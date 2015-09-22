@@ -3,13 +3,27 @@
 namespace Webaccess\WCMSLaravelStorageEloquent\Repositories;
 
 use Webaccess\WCMSCore\Entities\BlockType;
+use Webaccess\WCMSCore\Repositories\BlockTypeRepositoryInterface;
 use Webaccess\WCMSLaravelStorageEloquent\Models\BlockType as BlockTypeModel;
 
-class EloquentBlockTypeRepository
+class EloquentBlockTypeRepository implements BlockTypeRepositoryInterface
 {
-    public function findAll()
+    public function findAll($structure = false)
     {
-        return BlockTypeModel::orderBy('order', 'asc')->get();
+        $blockTypeModels = BlockTypeModel::orderBy('order', 'asc')->get();
+
+        $blockTypes = [];
+        foreach ($blockTypeModels as $blockTypeModel)
+            $blockTypes[]= self::createBlockTypeFromModel($blockTypeModel);
+
+        return $blockTypes;
+    }
+
+    public function findByCode($code) {
+        if ($blockTypeModel = BlockTypeModel::where('code', '=', $code)->first())
+            return self::createBlockTypeFromModel($blockTypeModel);
+
+        return false;
     }
 
     public function createBlockType(BlockType $blockType)
@@ -29,7 +43,18 @@ class EloquentBlockTypeRepository
         return $blockTypeModel->id;
     }
 
-    public function getBlockTypeByCode($code) {
-        return BlockTypeModel::where('code', '=', $code)->first();
+    private static function createBlockTypeFromModel($blockTypeModel)
+    {
+        $blockType = new BlockType();
+        $blockType->setID($blockTypeModel->id);
+        $blockType->setName($blockTypeModel->name);
+        $blockType->setEntity($blockTypeModel->entity);
+        $blockType->setBackController($blockTypeModel->back_controller);
+        $blockType->setBackView($blockTypeModel->back_view);
+        $blockType->setFrontController($blockTypeModel->front_controller);
+        $blockType->setFrontView($blockTypeModel->front_view);
+        $blockType->setOrder($blockTypeModel->order);
+
+        return $blockType;
     }
 } 
