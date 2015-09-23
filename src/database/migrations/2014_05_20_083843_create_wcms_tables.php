@@ -24,6 +24,7 @@ class CreateWCMSTables extends Migration {
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
+            $table->boolean('is_indexed')->nullable();
             $table->integer('master_page_id')->nullable();
             $table->boolean('is_master')->nullable();
             $table->timestamps();
