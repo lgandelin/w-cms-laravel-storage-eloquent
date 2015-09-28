@@ -2,10 +2,6 @@
 
 namespace Webaccess\WCMSLaravelStorageEloquent\Models\Blocks;
 
-use Webaccess\WCMSCore\Entities\Block;
-use Webaccess\WCMSCore\Entities\Blocks\ArticleListBlock as ArticleListBlockEntity;
-use Webaccess\WCMSLaravelStorageEloquent\Models\Block as BlockModel;
-
 class ArticleListBlock extends \Eloquent
 {
     protected $table = 'w_cms_blocks_article_list';

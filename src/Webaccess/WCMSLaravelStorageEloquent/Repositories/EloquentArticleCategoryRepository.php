@@ -23,11 +23,11 @@ class EloquentArticleCategoryRepository implements ArticleCategoryRepositoryInte
             $articleCategoryModels = ArticleCategoryModel::where('lang_id', '=', $langID)->get();
         }
 
-        $articleCategorys = [];
+        $articleCategories = [];
         foreach ($articleCategoryModels as $articleCategoryModel)
-            $articleCategorys[]= self::createArticleCategoryFromModel($articleCategoryModel);
+            $articleCategories[]= self::createArticleCategoryFromModel($articleCategoryModel);
 
-        return $articleCategorys;
+        return $articleCategories;
     }
 
     public function createArticleCategory(ArticleCategory $articleCategory)

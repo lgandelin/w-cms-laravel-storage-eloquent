@@ -54,6 +54,7 @@ class EloquentBlockTypeRepository implements BlockTypeRepositoryInterface
     {
         $blockType = new BlockType();
         $blockType->setID($blockTypeModel->id);
+        $blockType->setCode($blockTypeModel->code);
         $blockType->setName($blockTypeModel->name);
         $blockType->setEntity($blockTypeModel->entity);
         $blockType->setBackController($blockTypeModel->back_controller);

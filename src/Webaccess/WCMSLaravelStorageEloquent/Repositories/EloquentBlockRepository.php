@@ -198,8 +198,10 @@ class EloquentBlockRepository implements BlockRepositoryInterface
 
     private static function getBlockTypeEntity($code)
     {
-        $blockType = Context::get('block_type_repository')->getBlockTypeByCode($code);
+        if ($blockType = Context::get('block_type_repository')->findByCode($code)) {
+            return $blockType->getEntity();
+        }
 
-        return $blockType->entity;
+        return false;
     }
 } 

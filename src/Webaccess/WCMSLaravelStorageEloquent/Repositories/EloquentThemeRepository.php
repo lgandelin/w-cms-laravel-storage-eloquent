@@ -18,7 +18,20 @@ class EloquentThemeRepository implements ThemeRepositoryInterface
 
     public function findSelectedTheme()
     {
-        return ThemeModel::where('is_selected', 1)->first();
+        if ($theme = ThemeModel::where('is_selected', 1)->first()) {
+            return self::createThemeFromModel($theme);
+        }
+
+        return false;
+    }
+
+    public function findByIdentifier($identifier)
+    {
+        if ($theme = ThemeModel::where('identifier', '=', $identifier)->first()) {
+            return self::createThemeFromModel($theme);
+        }
+
+        return false;
     }
 
     public function findAll()
