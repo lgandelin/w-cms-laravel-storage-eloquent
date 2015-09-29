@@ -33,6 +33,7 @@ class EloquentMediaFormatRepository implements MediaFormatRepositoryInterface
         $mediaFormatModel->name = $mediaFormat->getName();
         $mediaFormatModel->width = $mediaFormat->getWidth();
         $mediaFormatModel->height = $mediaFormat->getHeight();
+        $mediaFormatModel->preserve_ratio = $mediaFormat->getPreserveRatio();
 
         $mediaFormatModel->save();
 
@@ -45,6 +46,7 @@ class EloquentMediaFormatRepository implements MediaFormatRepositoryInterface
         $mediaFormatModel->name = $mediaFormat->getName();
         $mediaFormatModel->width = $mediaFormat->getWidth();
         $mediaFormatModel->height = $mediaFormat->getHeight();
+        $mediaFormatModel->preserve_ratio = $mediaFormat->getPreserveRatio();
 
         return $mediaFormatModel->save();
     }
@@ -63,6 +65,7 @@ class EloquentMediaFormatRepository implements MediaFormatRepositoryInterface
         $mediaFormat->setName($mediaFormatModel->name);
         $mediaFormat->setWidth($mediaFormatModel->width);
         $mediaFormat->setHeight($mediaFormatModel->height);
+        $mediaFormat->setPreserveRatio($mediaFormatModel->preserve_ratio);
 
         return $mediaFormat;
     }

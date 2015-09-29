@@ -134,6 +134,7 @@ class CreateWCMSTables extends Migration {
             $table->string('name')->nullable();
             $table->integer('width')->nullable();
             $table->integer('height')->nullable();
+            $table->boolean('preserve_ratio')->nullable();
             $table->timestamps();
         });
 
