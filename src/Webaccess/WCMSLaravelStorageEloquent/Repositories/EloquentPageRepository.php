@@ -86,6 +86,7 @@ class EloquentPageRepository implements PageRepositoryInterface {
 		$pageModel->meta_title = $page->getMetaTitle();
 		$pageModel->meta_description = $page->getMetaDescription();
 		$pageModel->meta_keywords = $page->getMetaKeywords();
+		$pageModel->is_visible = $page->getIsVisible();
 		$pageModel->is_indexed = $page->getIsIndexed();
 		$pageModel->is_master = $page->getIsMaster();
         $pageModel->master_page_id = $page->getMasterPageID();
@@ -104,6 +105,7 @@ class EloquentPageRepository implements PageRepositoryInterface {
         $pageModel->meta_title = $page->getMetaTitle();
         $pageModel->meta_description = $page->getMetaDescription();
         $pageModel->meta_keywords = $page->getMetaKeywords();
+        $pageModel->is_visible = $page->getIsVisible();
         $pageModel->is_indexed = $page->getIsIndexed();
         $pageModel->is_master = $page->getIsMaster();
         $pageModel->master_page_id = $page->getMasterPageID();
@@ -129,6 +131,7 @@ class EloquentPageRepository implements PageRepositoryInterface {
         $page->setMetaTitle($pageModel->meta_title);
         $page->setMetaDescription($pageModel->meta_description);
         $page->setMetaKeywords($pageModel->meta_keywords);
+        $page->setIsVisible($pageModel->is_visible);
         $page->setIsIndexed($pageModel->is_indexed);
         $page->setIsMaster($pageModel->is_master);
         $page->setMasterPageID($pageModel->master_page_id);
